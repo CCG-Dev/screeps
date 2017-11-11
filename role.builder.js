@@ -1,7 +1,7 @@
 var roleUpgrader = require('role.upgrader');
 
 module.exports = {
-  run: function(creep) {
+  run = creep => {
     if (creep.memory.target == undefined) {
       creep.memory.target = creep.room.name;
     }

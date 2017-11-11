@@ -1,7 +1,8 @@
-var common = require('common');
+import common from './common';
+// const common = require('common');
 
 var roleHarvester = {
-  assignSource: function(creep) {
+  assignSource = creep => {
     var flags = _.filter(creep.room.find(FIND_FLAGS), (flag) => flag.name.substring(0, 1) === "S" && flag.name !== "Storage");
     var roomName = creep.room.name;
     var maxHarvesters = 0;
@@ -21,8 +22,9 @@ var roleHarvester = {
       }
     }
     Memory.rooms[roomName].roles.harvester = maxHarvesters;
-  },
-  run: function(creep) {
+  };
+  run = creep => {
+    console.log(common.getEnergy(creep));
     if (creep.memory.target == undefined) {
       creep.memory.target = creep.room.name;
     }
@@ -102,7 +104,7 @@ var roleHarvester = {
       }
     }
     */
-  }
+  };
 };
 
 module.exports = roleHarvester;

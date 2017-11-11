@@ -1,5 +1,5 @@
 var roleUpgrader = {
-  run: function(creep) {
+  run = creep => {
     if (creep.memory.target == undefined) {
       creep.memory.target = creep.room.name;
     }
@@ -43,7 +43,7 @@ var roleUpgrader = {
       }
       */
     }
-  }
+  };
 };
 
 module.exports = roleUpgrader;

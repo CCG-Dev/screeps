@@ -1,5 +1,5 @@
-var common = {
-  getFatigue: function(creep) {
+const common = {
+  getFatigue = creep => {
     var body = creep.body;
     var nonMoveCount = 0;
     var moveCount = 0;
@@ -14,9 +14,9 @@ var common = {
       }
     }
     return 2 * (nonMoveCount * 0.5 - moveCount);
-  },
+  };
 
-  distTo: function(creep, pos) {
+  distTo =(creep, pos) => {
     var x = creep.pos.x - pos.x;
     var y = creep.pos.y - pos.y;
     var xSquared = x * x;
@@ -24,9 +24,9 @@ var common = {
     var root = xSquared + ySquared;
     var dist = Math.sqrt(root);
     return dist;
-  },
+  };
 
-  getEnergy: function(creep) {
+  getEnergy = creep => {
     var maxTicks = 50;
     //Priority 1 is dropped energy, since it detiorates
     //TODO find why creeps will pick up compounds
@@ -67,9 +67,9 @@ var common = {
         creep.memory.path = null;
       }
     }
-  },
+  };
 
-  move: function(creep, pos) {
+  move = (creep, pos) => {
     if (creep.pos.x === 0) {
       creep.move(RIGHT);
     } else if (creep.pos.x === 49) {
@@ -105,7 +105,7 @@ var common = {
       }
       return result;
     }
-  }
+  };
 };
 
-module.export = common;
+export default common;

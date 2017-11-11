@@ -9,23 +9,23 @@ var roles = {
   //lorry: require('role.lorry')
 };
 
-Creep.prototype.runRole = function() {
+Creep.prototype.runRole = () => {
   roles[this.memory.role].run(this);
 };
 
-Creep.prototype.getEnergy = function(useContainer, useSource) {
+Creep.prototype.getEnergy = (useContainer, useSource) => {
   let container;
   if (useContainer) {
     container = this.pos.findClosestByPath(FIND_STRUCTURES, {
-      filter: s => (s.structureType == STRUCTURE_CONTAINER || s.structureType == STRUCTURE_STORAGE) && s.store[RESOURCE_ENERGY] > 0
+      filter: s => (s.structureType == STRUCTURE_CONTAINER || s.structureType === STRUCTURE_STORAGE) && s.store[RESOURCE_ENERGY] > 0
     });
-    if (container != undefined) {
+    if (container !== undefined) {
       if (this.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
         this.moveTo(container);
       }
     }
   }
-  if (container == undefined && useSource) {
+  if (container === undefined && useSource) {
     if (this.memory.role == 'harvester' || this.memory.role == 'longDistanceHarvester') {
       if (this.memory.source == undefined) {
         roles[this.memory.role].assignSource(this);
@@ -37,7 +37,7 @@ Creep.prototype.getEnergy = function(useContainer, useSource) {
     } else {
       var source = this.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
     }
-    if (this.harvest(source) == ERR_NOT_IN_RANGE) {
+    if (this.harvest(source) === ERR_NOT_IN_RANGE) {
       this.moveTo(source, {
         visualizePathStyle: {
           stroke: '#ffffff'

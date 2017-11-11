@@ -1,5 +1,5 @@
 module.exports = {
-  assignSource: function(creep) {
+  assignSource = creep => {
     var flags = _.filter(creep.room.find(FIND_FLAGS), (flag) => flag.name.substring(0, 1) === "S" && flag.name !== "Storage");
     var roomName = creep.room.name;
     var maxHarvesters = 0;
@@ -19,8 +19,8 @@ module.exports = {
       }
     }
     //creep.room.roles.maxHarvesters = maxHarvesters;
-  },
-  run: function(creep) {
+  };
+  run = creep => {
     if (creep.memory.working == true && creep.carry.energy == 0) {
       creep.memory.working = false;
     } else if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
@@ -73,5 +73,5 @@ module.exports = {
         creep.moveTo(creep.pos.findClosestByPath(exit));
       }
     }
-  }
+  };
 };

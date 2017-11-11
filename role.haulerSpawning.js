@@ -1,5 +1,5 @@
 module.exports = {
-  run: function(creep) {
+  run = creep => {
     if (creep.memory.working && creep.carry.energy == 0) {
       creep.memory.working = false;
     }
@@ -46,5 +46,5 @@ module.exports = {
         }
       }
     }
-  }
+  };
 };

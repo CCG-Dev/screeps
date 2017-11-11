@@ -1,5 +1,5 @@
 var Respawner = {
-  run: function(moneyAvai, currentSpawn) {
+  run = (moneyAvai, currentSpawn) => {
     //var moneyAvai = Game.rooms['W7N4'].energyCapacityAvailable;
     //moneyAvai = 300;
     var harvester = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -206,7 +206,7 @@ var Respawner = {
       }
       console.log('Spawning new repairer: ' + newName);
     }
-  }
+  };
 };
 
 module.exports = Respawner;

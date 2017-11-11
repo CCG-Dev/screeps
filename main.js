@@ -1,26 +1,26 @@
 require('prototype.spawner')();
 require('prototype.tower');
 require('prototype.creep');
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
-var roleRepairer = require('role.repairer');
-var roleHaulerMining = require('role.haulerMining');
-var roleHaulerSpawning = require('role.haulerSpawning');
-var roleClaimer = require('role.claimer');
-var roleLongDistanceHarvester = require('role.longDistanceHarvester');
-var structureSpawn = require('structure.spawn');
+const roleHarvester = require('role.harvester');
+const roleUpgrader = require('role.upgrader');
+const roleBuilder = require('role.builder');
+const roleRepairer = require('role.repairer');
+const roleHaulerMining = require('role.haulerMining');
+const roleHaulerSpawning = require('role.haulerSpawning');
+const roleClaimer = require('role.claimer');
+const roleLongDistanceHarvester = require('role.longDistanceHarvester');
+const structureSpawn = require('structure.spawn');
 
 global.HOME = 'W7N4';
 
-module.exports.loop = function() {
-  for (let name in Memory.creeps) {
-    if (Game.creeps[name] == undefined) {
+module.exports.loop = () => {
+  for (const name in Memory.creeps) {
+    if (Game.creeps[name] === undefined) {
       delete Memory.creeps[name];
     }
   }
 
-  for (let name in Game.creeps) {
+  for (const name in Game.creeps) {
     var creep = Game.creeps[name];
     if (creep.memory.role == 'harvester') {
       roleHarvester.run(creep);
@@ -43,14 +43,13 @@ module.exports.loop = function() {
     }
   }
 
-  var towers = _.filter(Game.structures, s => s.structureType == STRUCTURE_TOWER);
-  for (let tower of towers) {
+  const towers = _.filter(Game.structures, s => s.structureType === STRUCTURE_TOWER);
+  for (const tower of towers) {
     tower.defend();
   }
 
-  for (let spawnName in Game.spawns) {
-    let spawn = Game.spawns[spawnName];
-
+  for (const spawnName in Game.spawns) {
+    const spawn = Game.spawns[spawnName];
     structureSpawn.run(spawn);
   }
 }

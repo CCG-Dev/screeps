@@ -1,7 +1,7 @@
 require('prototype.spawner')();
 
 module.exports = {
-  init: function(room) {
+  init = room => {
     // Initialize room memory for spawn if not already initialized
     if (room.memory.roles == undefined) {
       room.memory.roles = {};
@@ -42,9 +42,9 @@ module.exports = {
         eval(`room.memory.creepCount.harvestersLD${remoteHarvestRoom} = longDistanceHarvesters${remoteHarvestRoom}`);
       }
     }
-  },
+  };
 
-  spawnCreep: function(spawn, room, type) {
+  spawnCreep = (spawn, room, type) => {
     if (room.memory.creepCount[type] < room.memory.roles[type]) {
       if (room.memory.energyCapacity > 800) {
         var energyCapacity = 800;
@@ -59,9 +59,9 @@ module.exports = {
         return name;
       }
     }
-  },
+  };
 
-  run: function(spawn) {
+  run = spawn => {
     let room = spawn.room;
     this.init(room);
 
@@ -98,5 +98,5 @@ module.exports = {
         opacity: 0.8
       });
     }
-  }
+  };
 };
